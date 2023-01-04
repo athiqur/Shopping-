@@ -39,4 +39,4 @@ class TestProductDetail(ModelMixin, TestCase):
         response = self.client.get(
             reverse("shop:product_detail", args=[1000, "invalid-slug"])
         )
-        self.assertIsNone(response.context["None"])
+        self.assertEqual(response.status_code, 404)
