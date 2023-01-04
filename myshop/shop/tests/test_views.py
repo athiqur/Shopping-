@@ -12,10 +12,10 @@ class TestProductList(ModelMixin, TestCase):
         )
         self.assertEquals(response.context["products"][0], self.product)
 
-    def test_product_list_view_returns_empty_context_when_the_category_slug_is_invalid(
+    def test_product_list_view_returns_error_status_when_the_category_slug_is_invalid(
         self,
     ):
         response = self.client.get(
             reverse("shop:product_list_by_category", args=["invalid-slug"])
         )
-        self.assertIsNone(response.context["None"])
+        self.assertEqual(response.status_code, 404)
