@@ -33,7 +33,7 @@ class TestProductDetail(ModelMixin, TestCase):
         )
         self.assertEquals(response.context["product"], self.product)
 
-    def test_product_detail_view_returns_empty_context_when_the_product_is_not_found(
+    def test_product_detail_view_returns_error_status_when_the_product_is_not_found(
         self,
     ):
         response = self.client.get(
